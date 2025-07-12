@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const BASEROW_API_URL = 'https://api.baserow.io/api/database/rows/table/256135/?user_field_names=true';
+  const BASEROW_API_URL = 'https://api.baserow.io/api/database/rows/table/605120/?user_field_names=true';
   const BASEROW_API_TOKEN = process.env.BASEROW_API_TOKEN;
 
   try {
