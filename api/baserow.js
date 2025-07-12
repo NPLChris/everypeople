@@ -30,18 +30,23 @@ export default async function handler(req, res) {
   const BASEROW_API_TOKEN = process.env.BASEROW_API_TOKEN;
 
   try {
-    const baserowResponse = await fetch(BASEROW_API_URL, {
-      headers: {
-        Authorization: `Token ${BASEROW_API_TOKEN}`,
-      },
+  const baserowResponse = await fetch(BASEROW_API_URL, {
+    headers: {
+      Authorization: `Token ${BASEROW_API_TOKEN}`,
+    },
+  });
+
+  const responseText = await baserowResponse.text();
+
+  if (!baserowResponse.ok) {
+     return res.status(500).json({ 
+        error: 'Failed to fetch Baserow data.', 
+     details: responseText 
     });
+  }
 
-    if (!baserowResponse.ok) {
-      return res.status(500).json({ error: 'Failed to fetch Baserow data.' });
-    }
-
-    const data = await baserowResponse.json();
-    return res.status(200).json(data);
+  const data = JSON.parse(responseText);
+  return res.status(200).json(data);
 
   } catch (err) {
     return res.status(500).json({ error: 'Server error.', details: err.message });
