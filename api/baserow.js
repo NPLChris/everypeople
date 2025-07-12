@@ -1,5 +1,22 @@
 export default async function handler(req, res) {
-  // Get token from Authorization header or ?token query param
+  const allowedOrigins = [
+    'https://www.everypeople.org',
+  ];
+
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   const clientToken =
     req.headers['authorization']?.replace('Bearer ', '') || req.query.token;
 
