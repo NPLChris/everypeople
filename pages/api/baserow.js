@@ -51,4 +51,15 @@ export default async function handler(req, res) {
   } catch (err) {
     return res.status(500).json({ error: 'Server error.', details: err.message });
   }
+
+console.log('clientToken:', clientToken);
+console.log('EXPECTED_CLIENT_TOKEN:', EXPECTED_CLIENT_TOKEN);
+
+if (clientToken !== EXPECTED_CLIENT_TOKEN) {
+  return res.status(401).json({ 
+    error: 'Unauthorized',
+    clientTokenReceived: clientToken,
+    expected: EXPECTED_CLIENT_TOKEN
+  });
+}
 }
