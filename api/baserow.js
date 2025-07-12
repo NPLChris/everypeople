@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const TABLE_ID = '256135';
+  const TABLE_ID = '605120';
   const TOKEN = 's01mS0h0wRTMInFyr9USk4ehAz1x6K51';
   const url = `https://api.baserow.io/api/database/rows/table/${TABLE_ID}/?user_field_names=true&token=${TOKEN}`;
 
