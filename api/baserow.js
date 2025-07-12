@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const allowedOrigins = [
-    'https://www.everypeople.org',
+    'https://www.everypeople.org/test',
   ];
 
   const origin = req.headers.origin;
