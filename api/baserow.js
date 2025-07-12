@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
 
   const clientToken =
-    req.headers['authorization']?.replace('Bearer abc123supersecret') || req.query.token;
+    req.headers['authorization']?.replace('Bearer ', ') || req.query.token;
 
   const EXPECTED_CLIENT_TOKEN = process.env.CLIENT_TOKEN;
 
